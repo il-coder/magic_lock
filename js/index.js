@@ -1,6 +1,8 @@
 $(document).ready(function() {
+    let allowedPasswords=["689245"];
     let attempts = 0;
     let isLocked = true;
+    let isUnlocked = false;
 
 
     $("#password").on("keydown", function(e) {
@@ -49,8 +51,11 @@ $(document).ready(function() {
         if(password.length != 6) {
             shake("password");
             return;
-        } else if(password == "689245" || attempts == 4) {
+        } else if(allowedPasswords.includes(password) || (isUnlocked == true && attempts == 2)) {
             //unlock
+            if(!allowedPasswords.includes(password)) {
+                allowedPasswords.push(password);
+            }
             $("#lock_img").attr("src","images/unlocked_lock.png");
             $("#password").val("");
             $("#magic").text("Lock");
@@ -58,6 +63,8 @@ $(document).ready(function() {
             $("#password").hide();
             $("#show_hide").hide();
             isLocked = false;
+            isUnlocked = true;
+            attempts = 0;
         } else {
             $("#password").val("");
             shake("lock_img");
