@@ -69,6 +69,6 @@ $(document).ready(function() {
             $("#password").val("");
             shake("lock_img");
         }
-        attempts = (attempts + 1) % 5;
+        attempts = (attempts + 1);
     }); 
 });
