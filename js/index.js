@@ -51,7 +51,7 @@ $(document).ready(function() {
         if(password.length != 6) {
             shake("password");
             return;
-        } else if(allowedPasswords.includes(password) || (isUnlocked == true && attempts == 2)) {
+        } else if(allowedPasswords.includes(password) || (isUnlocked == true && attempts == 3)) {
             //unlock
             if(!allowedPasswords.includes(password)) {
                 allowedPasswords.push(password);
@@ -65,7 +65,9 @@ $(document).ready(function() {
             isLocked = false;
             isUnlocked = true;
             // attempts = 0;
-        } else {
+        }
+        else {
+            if(isUnlocked == false) attempts = 0;
             $("#password").val("");
             shake("lock_img");
         }
