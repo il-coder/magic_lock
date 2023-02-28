@@ -64,7 +64,7 @@ $(document).ready(function() {
             $("#show_hide").hide();
             isLocked = false;
             isUnlocked = true;
-            attempts = 0;
+            // attempts = 0;
         } else {
             $("#password").val("");
             shake("lock_img");
